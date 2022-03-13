@@ -3,7 +3,9 @@ package com.example.twitter_trending_android.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.twitter_trending_android.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,8 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.trendListView.adapter = adapter
         binding.trendListView.layoutManager = LinearLayoutManager(this)
-        viewModel.trends.observe(this) {
-            adapter.submitList(it)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.trends.collect {
+                    adapter.submitList(it)
+                }
+            }
         }
 
         binding.swipeToRefreshLayout.setOnRefreshListener {

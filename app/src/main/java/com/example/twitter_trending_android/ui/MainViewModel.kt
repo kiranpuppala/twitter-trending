@@ -1,13 +1,12 @@
 package com.example.twitter_trending_android.ui
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.twitter_trending_android.domain.repository.TwitterRepository
 import com.example.twitter_trending_android.ui.mapper.ViewStateMapper.mapTableDataToViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,9 +15,21 @@ class MainViewModel @Inject constructor(
     private val twitterRepo: TwitterRepository
 ) : ViewModel() {
 
-    val trends: LiveData<List<TrendViewState>> = twitterRepo.getTrends().map { res ->
-        mapTableDataToViewState(res.data!!)
-    }.asLiveData()
+    private val _trends: MutableStateFlow<List<TrendViewState>> = MutableStateFlow(listOf())
+
+    val trends: StateFlow<List<TrendViewState>> = _trends.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            twitterRepo.getTrends().map {
+                mapTableDataToViewState(it.data ?: listOf())
+            }.flowOn(Dispatchers.IO).collect { trendViewStateList ->
+                _trends.update {
+                    trendViewStateList
+                }
+            }
+        }
+    }
 
     fun loadTrends() {
         viewModelScope.launch {
