@@ -1,7 +1,7 @@
-package com.example.twitter_trending_android.ui.mapper
+package com.example.twitter_trending_android.presentation.mapper
 
 import com.example.twitter_trending_android.data.db.entity.TableTrend
-import com.example.twitter_trending_android.ui.TrendViewState
+import com.example.twitter_trending_android.presentation.TrendViewState
 
 object ViewStateMapper {
     fun mapTableDataToViewState(trends: List<TableTrend>) : List<TrendViewState>{

@@ -1,11 +1,10 @@
-package com.example.twitter_trending_android.ui
+package com.example.twitter_trending_android.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.twitter_trending_android.data.network.model.Trend
 import com.example.twitter_trending_android.databinding.TrendListItemBinding
 
 class TrendAdapter : ListAdapter<TrendViewState, TrendAdapter.TrendViewHolder>(DiffCallBack()) {

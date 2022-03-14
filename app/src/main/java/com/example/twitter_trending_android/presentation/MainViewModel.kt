@@ -1,9 +1,9 @@
-package com.example.twitter_trending_android.ui
+package com.example.twitter_trending_android.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.twitter_trending_android.domain.repository.TwitterRepository
-import com.example.twitter_trending_android.ui.mapper.ViewStateMapper.mapTableDataToViewState
+import com.example.twitter_trending_android.data.repository.TwitterRepository
+import com.example.twitter_trending_android.presentation.mapper.ViewStateMapper.mapTableDataToViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*

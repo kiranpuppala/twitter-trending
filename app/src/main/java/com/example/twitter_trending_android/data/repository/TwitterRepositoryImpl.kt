@@ -1,12 +1,12 @@
-package com.example.twitter_trending_android.data
+package com.example.twitter_trending_android.data.repository
 
 import android.util.Log
+import com.example.twitter_trending_android.data.Resource
 import com.example.twitter_trending_android.data.db.dao.TrendDao
 import com.example.twitter_trending_android.data.db.entity.TableTrend
 import com.example.twitter_trending_android.data.db.mapper.DBMapper
 import com.example.twitter_trending_android.data.network.networkBoundResource
 import com.example.twitter_trending_android.data.network.service.TwitterApiService
-import com.example.twitter_trending_android.domain.repository.TwitterRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

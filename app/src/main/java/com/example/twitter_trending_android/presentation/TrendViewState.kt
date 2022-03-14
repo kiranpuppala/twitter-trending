@@ -1,4 +1,4 @@
-package com.example.twitter_trending_android.ui
+package com.example.twitter_trending_android.presentation
 
 data class TrendViewState(
     val name: String,

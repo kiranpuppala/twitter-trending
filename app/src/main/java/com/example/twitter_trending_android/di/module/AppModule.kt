@@ -2,11 +2,11 @@ package com.example.twitter_trending_android.di.module
 
 import android.app.Application
 import androidx.room.Room
-import com.example.twitter_trending_android.data.TwitterRepositoryImpl
+import com.example.twitter_trending_android.data.repository.TwitterRepositoryImpl
 import com.example.twitter_trending_android.data.db.TwitterDatabase
 import com.example.twitter_trending_android.data.db.dao.TrendDao
 import com.example.twitter_trending_android.data.network.service.TwitterApiService
-import com.example.twitter_trending_android.domain.repository.TwitterRepository
+import com.example.twitter_trending_android.data.repository.TwitterRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
