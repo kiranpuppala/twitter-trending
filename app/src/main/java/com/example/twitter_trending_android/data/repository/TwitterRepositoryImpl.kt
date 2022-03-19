@@ -19,7 +19,7 @@ class TwitterRepositoryImpl(
     private val TAG = "TwitterRepositoryImpl"
 
     override suspend fun loadTrendsFromApi() {
-        withContext(Dispatchers.IO) {
+        withContext(Dispatchers.IO) { //Check if room and retrofit launches calls in their own background thread and remove this
             try {
                 val response = twitterApiService.trending()
                 if (response.isSuccessful) {
